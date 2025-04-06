@@ -1,0 +1,126 @@
+[gd_scene load_steps=14 format=3 uid="uid://dhqnm1mlu87hb"]
+
+[ext_resource type="Script" uid="uid://bik7nmmbg2fwd" path="res://ball.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://4n5ocoakrl56" path="res://player.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://nmssax0ehall" path="res://ai.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://dlpi8n5yk34gb" path="res://goalpost.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://rr1y34si0iru" path="res://scoreboard.gd" id="5_lquwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
+size = Vector2(1152, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ig7tw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0xm2m"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(20, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(56, 648)
+
+[sub_resource type="SystemFont" id="SystemFont_1bvp3"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_lquwl"]
+font = SubResource("SystemFont_1bvp3")
+font_size = 42
+font_color = Color(0.859212, 0.782747, 1, 1)
+
+[node name="Main" type="Node2D"]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(576, -10)
+shape = SubResource("RectangleShape2D_7dm0k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(576, 658)
+shape = SubResource("RectangleShape2D_7dm0k")
+
+[node name="Ball" type="CharacterBody2D" parent="." groups=["ball"]]
+position = Vector2(328, 92)
+motion_mode = 1
+script = ExtResource("1_ig7tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_ig7tw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+position = Vector2(-8.10623e-06, 1.90735e-06)
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_0xm2m")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(80, 320)
+motion_mode = 1
+script = ExtResource("2_0xm2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-10, -2)
+scale = Vector2(20, 126)
+texture = SubResource("PlaceholderTexture2D_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-10, -2)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="AI" type="CharacterBody2D" parent="."]
+position = Vector2(1105, 320)
+motion_mode = 1
+script = ExtResource("3_h2yge")
+
+[node name="Sprite2D" type="Sprite2D" parent="AI"]
+position = Vector2(-10, -2)
+scale = Vector2(20, 126)
+texture = SubResource("PlaceholderTexture2D_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI"]
+position = Vector2(-10, -2)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="PlayerGoalpost" type="Area2D" parent="."]
+script = ExtResource("4_1bvp3")
+is_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGoalpost"]
+position = Vector2(-28, 324)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="AIGoalpost" type="Area2D" parent="."]
+position = Vector2(1208, 0)
+script = ExtResource("4_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AIGoalpost"]
+position = Vector2(-28, 324)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Scoreboard" type="Node2D" parent="."]
+position = Vector2(576, 0)
+script = ExtResource("5_lquwl")
+
+[node name="PlayerScoreLabel" type="Label" parent="Scoreboard"]
+offset_left = -70.0
+offset_right = -30.0
+offset_bottom = 23.0
+text = "0"
+label_settings = SubResource("LabelSettings_lquwl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AIScoreLabel" type="Label" parent="Scoreboard"]
+offset_left = 30.0
+offset_right = 70.0
+offset_bottom = 23.0
+text = "0"
+label_settings = SubResource("LabelSettings_lquwl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="ai_scored" from="PlayerGoalpost" to="Scoreboard" method="on_ai_scored"]
+[connection signal="body_entered" from="PlayerGoalpost" to="PlayerGoalpost" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="AIGoalpost" to="AIGoalpost" method="_on_Area2D_body_entered"]
+[connection signal="player_scored" from="AIGoalpost" to="Scoreboard" method="on_player_scored"]
