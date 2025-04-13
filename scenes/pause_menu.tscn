@@ -42,8 +42,8 @@ text = "Restart"
 [node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_kukqi")
-text = "Quit"
+text = "End Game"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_return_main_menu_button_pressed"]

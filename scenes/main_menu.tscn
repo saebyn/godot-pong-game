@@ -44,4 +44,5 @@ theme = ExtResource("2_ekxnf")
 text = "Quit"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/KeybindingsButton" to="." method="_on_keybindings_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

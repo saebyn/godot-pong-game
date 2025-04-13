@@ -12,6 +12,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rllwk")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 241.0
+offset_right = 430.0
+offset_bottom = 281.0
+scale = Vector2(9.51044, 4.3333)
+color = Color(0.399428, 0.399428, 0.399428, 1)
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
