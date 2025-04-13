@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl2mo68h8geqb"]
+[gd_scene load_steps=4 format=3 uid="uid://cl2mo68h8geqb"]
 
 [ext_resource type="Script" uid="uid://b5waksogab2fq" path="res://splash.gd" id="1_86pdq"]
+[ext_resource type="Theme" uid="uid://5wwgiimot5nw" path="res://assets/new_theme.tres" id="2_10vqf"]
+
+[sub_resource type="Theme" id="Theme_4rrho"]
 
 [node name="Splash" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+scale = Vector2(1.00496, 1.00945)
+theme = SubResource("Theme_4rrho")
 script = ExtResource("1_86pdq")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -19,6 +24,8 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="CenterContainer"]
 layout_mode = 2
+theme = ExtResource("2_10vqf")
+theme_override_font_sizes/font_size = 88
 text = "saebyn's simple pong game"
 
 [node name="Timer" type="Timer" parent="."]
@@ -26,5 +33,4 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="timeout" from="Timer" to="." method="_on_timeout"]

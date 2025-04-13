@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://fymyq4epl6wb"]
+
+[ext_resource type="Shader" uid="uid://bqae7hh62u73j" path="res://shaders/balatro.gdshader" id="1_ehi37"]
+
+[resource]
+shader = ExtResource("1_ehi37")
+shader_parameter/spin_rotation_speed = 35.66
+shader_parameter/move_speed = 2.38
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.715551, 0.370558, 0.615792, 1)
+shader_parameter/colour_2 = Color(0.516237, 0.379234, 0.172279, 1)
+shader_parameter/colour_3 = Color(0.086, 0.137, 0.145, 1)
+shader_parameter/contrast = -2.96
+shader_parameter/lighting = 0.4
+shader_parameter/spin_amount = 0.25
+shader_parameter/pixel_filter = 740.0
+shader_parameter/is_rotating = false

@@ -1,9 +1,7 @@
 extends Control
 
 func exit_splash():
-  #get_tree().change_scene_to_file("res://main_menu.tscn")
-  # for now, just show the main scene
-  get_tree().change_scene_to_file("res://scenes/main.tscn")
+  get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_timeout():
   exit_splash()
