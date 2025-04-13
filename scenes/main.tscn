@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://dhqnm1mlu87hb"]
 
-[ext_resource type="Script" uid="uid://bik7nmmbg2fwd" path="res://ball.gd" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://4n5ocoakrl56" path="res://player.gd" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://nmssax0ehall" path="res://ai.gd" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://dlpi8n5yk34gb" path="res://goalpost.gd" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://rr1y34si0iru" path="res://scoreboard.gd" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://bik7nmmbg2fwd" path="res://ball.gd" id="1_tbgi4"]
+[ext_resource type="Script" uid="uid://4n5ocoakrl56" path="res://player.gd" id="2_tefeu"]
+[ext_resource type="Script" uid="uid://nmssax0ehall" path="res://ai.gd" id="3_o6xl0"]
+[ext_resource type="Script" uid="uid://dlpi8n5yk34gb" path="res://goalpost.gd" id="4_tipki"]
+[ext_resource type="Script" uid="uid://rr1y34si0iru" path="res://scoreboard.gd" id="5_85g3d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
 size = Vector2(1152, 20)
@@ -44,7 +44,7 @@ shape = SubResource("RectangleShape2D_7dm0k")
 [node name="Ball" type="CharacterBody2D" parent="." groups=["ball"]]
 position = Vector2(328, 92)
 motion_mode = 1
-script = ExtResource("1_ig7tw")
+script = ExtResource("1_tbgi4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource("CircleShape2D_ig7tw")
@@ -60,7 +60,7 @@ texture = SubResource("PlaceholderTexture2D_0xm2m")
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(80, 320)
 motion_mode = 1
-script = ExtResource("2_0xm2m")
+script = ExtResource("2_tefeu")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 position = Vector2(-10, -2)
@@ -74,7 +74,7 @@ shape = SubResource("RectangleShape2D_1bvp3")
 [node name="AI" type="CharacterBody2D" parent="."]
 position = Vector2(1105, 320)
 motion_mode = 1
-script = ExtResource("3_h2yge")
+script = ExtResource("3_o6xl0")
 
 [node name="Sprite2D" type="Sprite2D" parent="AI"]
 position = Vector2(-10, -2)
@@ -86,7 +86,7 @@ position = Vector2(-10, -2)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="PlayerGoalpost" type="Area2D" parent="." node_paths=PackedStringArray("ball")]
-script = ExtResource("4_1bvp3")
+script = ExtResource("4_tipki")
 ball = NodePath("../Ball")
 is_player = true
 
@@ -96,7 +96,7 @@ shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="AIGoalpost" type="Area2D" parent="." node_paths=PackedStringArray("ball")]
 position = Vector2(1208, 0)
-script = ExtResource("4_1bvp3")
+script = ExtResource("4_tipki")
 ball = NodePath("../Ball")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AIGoalpost"]
@@ -105,7 +105,7 @@ shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="Scoreboard" type="Node2D" parent="."]
 position = Vector2(576, 0)
-script = ExtResource("5_lquwl")
+script = ExtResource("5_85g3d")
 
 [node name="PlayerScoreLabel" type="Label" parent="Scoreboard"]
 offset_left = -70.0
