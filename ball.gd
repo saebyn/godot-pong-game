@@ -5,8 +5,10 @@ class_name Ball
 const SPEED = 300.0
 const ACCELERATION = 20.0
 
+var respawn_countdown: int = 3
+
 func _ready() -> void:
-  reset()
+  $Timer.start()
 
 func random_direction():
   # Generate a random angle in radians
@@ -45,3 +47,25 @@ func reset():
   position = Vector2(get_viewport().size.x / 2, get_viewport().size.y / 2)
   # Set a random direction for the ball
   velocity = random_direction() * SPEED
+
+  $Sprite2D.visible = true
+
+func score():
+  # Hide the ball when it scores
+  $Sprite2D.visible = false
+  # Reset the label for the countdown
+  $"../UI/RespawnCountdownLabel".text = str(respawn_countdown) + "..."
+  # Restart the timer
+  $Timer.start()
+
+
+func on_timeout():
+  respawn_countdown -= 1
+
+  $"../UI/RespawnCountdownLabel".text = str(respawn_countdown) + "..."
+
+  if respawn_countdown <= 0:
+    respawn_countdown = 3
+    $Timer.stop()
+    $"../UI/RespawnCountdownLabel".text = ""
+    reset()

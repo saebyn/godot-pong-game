@@ -50,9 +50,12 @@ script = ExtResource("1_ig7tw")
 shape = SubResource("CircleShape2D_ig7tw")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
+visible = false
 position = Vector2(-8.10623e-06, 1.90735e-06)
 scale = Vector2(20, 20)
 texture = SubResource("PlaceholderTexture2D_0xm2m")
+
+[node name="Timer" type="Timer" parent="Ball"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(80, 320)
@@ -82,17 +85,19 @@ texture = SubResource("PlaceholderTexture2D_h2yge")
 position = Vector2(-10, -2)
 shape = SubResource("RectangleShape2D_1bvp3")
 
-[node name="PlayerGoalpost" type="Area2D" parent="."]
+[node name="PlayerGoalpost" type="Area2D" parent="." node_paths=PackedStringArray("ball")]
 script = ExtResource("4_1bvp3")
+ball = NodePath("../Ball")
 is_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGoalpost"]
 position = Vector2(-28, 324)
 shape = SubResource("RectangleShape2D_lquwl")
 
-[node name="AIGoalpost" type="Area2D" parent="."]
+[node name="AIGoalpost" type="Area2D" parent="." node_paths=PackedStringArray("ball")]
 position = Vector2(1208, 0)
 script = ExtResource("4_1bvp3")
+ball = NodePath("../Ball")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AIGoalpost"]
 position = Vector2(-28, 324)
@@ -120,6 +125,30 @@ label_settings = SubResource("LabelSettings_lquwl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="RespawnCountdownLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -39.5
+offset_right = 78.0
+offset_bottom = 39.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "3..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Ball/Timer" to="Ball" method="on_timeout"]
 [connection signal="ai_scored" from="PlayerGoalpost" to="Scoreboard" method="on_ai_scored"]
 [connection signal="body_entered" from="PlayerGoalpost" to="PlayerGoalpost" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="AIGoalpost" to="AIGoalpost" method="_on_Area2D_body_entered"]
