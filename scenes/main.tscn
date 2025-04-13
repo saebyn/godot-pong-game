@@ -1,11 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhqnm1mlu87hb"]
+[gd_scene load_steps=17 format=3 uid="uid://dhqnm1mlu87hb"]
 
 [ext_resource type="Script" uid="uid://bik7nmmbg2fwd" path="res://ball.gd" id="1_tbgi4"]
 [ext_resource type="Material" uid="uid://fymyq4epl6wb" path="res://materials/new_shader_material.tres" id="1_tefeu"]
+[ext_resource type="Script" uid="uid://dh4urbplenrq4" path="res://main_scene.gd" id="1_tipki"]
 [ext_resource type="Script" uid="uid://4n5ocoakrl56" path="res://player.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://nmssax0ehall" path="res://ai.gd" id="3_o6xl0"]
 [ext_resource type="Script" uid="uid://dlpi8n5yk34gb" path="res://goalpost.gd" id="4_tipki"]
 [ext_resource type="Script" uid="uid://rr1y34si0iru" path="res://scoreboard.gd" id="5_85g3d"]
+[ext_resource type="PackedScene" uid="uid://dpw1icb6rf1ir" path="res://scenes/pause_menu.tscn" id="8_85g3d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
 size = Vector2(1152, 20)
@@ -31,14 +33,19 @@ font_size = 42
 font_color = Color(0.859212, 0.782747, 1, 1)
 
 [node name="Main" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_tipki")
 
-[node name="UI" type="Control" parent="."]
+[node name="GameContainer" type="Node2D" parent="."]
+process_mode = 1
+
+[node name="UI" type="Control" parent="GameContainer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="ColorRect" type="ColorRect" parent="UI"]
+[node name="ColorRect" type="ColorRect" parent="GameContainer/UI"]
 material = ExtResource("1_tefeu")
 layout_mode = 1
 anchors_preset = 15
@@ -47,7 +54,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RespawnCountdownLabel" type="Label" parent="UI"]
+[node name="RespawnCountdownLabel" type="Label" parent="GameContainer/UI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,83 +71,83 @@ text = "3..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Walls" type="StaticBody2D" parent="."]
+[node name="Walls" type="StaticBody2D" parent="GameContainer"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/Walls"]
 position = Vector2(576, -10)
 shape = SubResource("RectangleShape2D_7dm0k")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameContainer/Walls"]
 position = Vector2(576, 658)
 shape = SubResource("RectangleShape2D_7dm0k")
 
-[node name="Ball" type="CharacterBody2D" parent="." groups=["ball"]]
+[node name="Ball" type="CharacterBody2D" parent="GameContainer" groups=["ball"]]
 position = Vector2(328, 92)
 motion_mode = 1
 script = ExtResource("1_tbgi4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/Ball"]
 shape = SubResource("CircleShape2D_ig7tw")
 
-[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+[node name="Sprite2D" type="Sprite2D" parent="GameContainer/Ball"]
 visible = false
 position = Vector2(-8.10623e-06, 1.90735e-06)
 scale = Vector2(20, 20)
 texture = SubResource("PlaceholderTexture2D_0xm2m")
 
-[node name="Timer" type="Timer" parent="Ball"]
+[node name="Timer" type="Timer" parent="GameContainer/Ball"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="GameContainer"]
 position = Vector2(80, 320)
 motion_mode = 1
 script = ExtResource("2_tefeu")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="GameContainer/Player"]
 position = Vector2(-10, -2)
 scale = Vector2(20, 126)
 texture = SubResource("PlaceholderTexture2D_h2yge")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/Player"]
 position = Vector2(-10, -2)
 shape = SubResource("RectangleShape2D_1bvp3")
 
-[node name="AI" type="CharacterBody2D" parent="."]
+[node name="AI" type="CharacterBody2D" parent="GameContainer"]
 position = Vector2(1105, 320)
 motion_mode = 1
 script = ExtResource("3_o6xl0")
 
-[node name="Sprite2D" type="Sprite2D" parent="AI"]
+[node name="Sprite2D" type="Sprite2D" parent="GameContainer/AI"]
 position = Vector2(-10, -2)
 scale = Vector2(20, 126)
 texture = SubResource("PlaceholderTexture2D_h2yge")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AI"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/AI"]
 position = Vector2(-10, -2)
 shape = SubResource("RectangleShape2D_1bvp3")
 
-[node name="PlayerGoalpost" type="Area2D" parent="." node_paths=PackedStringArray("ball")]
+[node name="PlayerGoalpost" type="Area2D" parent="GameContainer" node_paths=PackedStringArray("ball")]
 script = ExtResource("4_tipki")
 ball = NodePath("../Ball")
 is_player = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGoalpost"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/PlayerGoalpost"]
 position = Vector2(-28, 324)
 shape = SubResource("RectangleShape2D_lquwl")
 
-[node name="AIGoalpost" type="Area2D" parent="." node_paths=PackedStringArray("ball")]
+[node name="AIGoalpost" type="Area2D" parent="GameContainer" node_paths=PackedStringArray("ball")]
 position = Vector2(1208, 0)
 script = ExtResource("4_tipki")
 ball = NodePath("../Ball")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AIGoalpost"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/AIGoalpost"]
 position = Vector2(-28, 324)
 shape = SubResource("RectangleShape2D_lquwl")
 
-[node name="Scoreboard" type="Node2D" parent="."]
+[node name="Scoreboard" type="Node2D" parent="GameContainer"]
 position = Vector2(576, 0)
 script = ExtResource("5_85g3d")
 
-[node name="PlayerScoreLabel" type="Label" parent="Scoreboard"]
+[node name="PlayerScoreLabel" type="Label" parent="GameContainer/Scoreboard"]
 offset_left = -70.0
 offset_right = -30.0
 offset_bottom = 23.0
@@ -149,7 +156,7 @@ label_settings = SubResource("LabelSettings_lquwl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AIScoreLabel" type="Label" parent="Scoreboard"]
+[node name="AIScoreLabel" type="Label" parent="GameContainer/Scoreboard"]
 offset_left = 30.0
 offset_right = 70.0
 offset_bottom = 23.0
@@ -158,8 +165,17 @@ label_settings = SubResource("LabelSettings_lquwl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="timeout" from="Ball/Timer" to="Ball" method="on_timeout"]
-[connection signal="ai_scored" from="PlayerGoalpost" to="Scoreboard" method="on_ai_scored"]
-[connection signal="body_entered" from="PlayerGoalpost" to="PlayerGoalpost" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="AIGoalpost" to="AIGoalpost" method="_on_Area2D_body_entered"]
-[connection signal="player_scored" from="AIGoalpost" to="Scoreboard" method="on_player_scored"]
+[node name="PauseMenu" parent="." instance=ExtResource("8_85g3d")]
+visible = false
+offset_left = 576.0
+offset_top = 324.0
+offset_right = 576.0
+offset_bottom = 324.0
+
+[connection signal="timeout" from="GameContainer/Ball/Timer" to="GameContainer/Ball" method="on_timeout"]
+[connection signal="ai_scored" from="GameContainer/PlayerGoalpost" to="GameContainer/Scoreboard" method="on_ai_scored"]
+[connection signal="body_entered" from="GameContainer/PlayerGoalpost" to="GameContainer/PlayerGoalpost" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="GameContainer/AIGoalpost" to="GameContainer/AIGoalpost" method="_on_Area2D_body_entered"]
+[connection signal="player_scored" from="GameContainer/AIGoalpost" to="GameContainer/Scoreboard" method="on_player_scored"]
+[connection signal="restart_game" from="PauseMenu" to="GameContainer/Ball" method="on_reset"]
+[connection signal="restart_game" from="PauseMenu" to="GameContainer/Scoreboard" method="reset_scores"]

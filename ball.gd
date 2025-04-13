@@ -69,3 +69,11 @@ func on_timeout():
     $Timer.stop()
     $"../UI/RespawnCountdownLabel".text = ""
     reset()
+
+func on_reset():
+  $Sprite2D.visible = false
+  velocity = Vector2.ZERO
+  # Reset the countdown
+  respawn_countdown = 3
+  $Timer.start()
+  $"../UI/RespawnCountdownLabel".text = "3..."

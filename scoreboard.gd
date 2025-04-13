@@ -10,21 +10,17 @@ var ai_score: int = 0
 var player_score_label: Label
 var ai_score_label: Label
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-  pass # Replace with function body.
-
-
-func reset_game_state():
-  pass
-
 
 func on_ai_scored():
   ai_score += 1
   $AIScoreLabel.text = str(ai_score)
-  reset_game_state()
 
 func on_player_scored():
   player_score += 1
   $PlayerScoreLabel.text = str(player_score)
-  reset_game_state()
+
+func reset_scores():
+  player_score = 0
+  ai_score = 0
+  $PlayerScoreLabel.text = str(player_score)
+  $AIScoreLabel.text = str(ai_score)
