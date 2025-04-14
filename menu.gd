@@ -33,3 +33,7 @@ func _on_resume_button_pressed() -> void:
 func _on_keybindings_button_pressed() -> void:
   var keybindings = keybindings_scene.instantiate()
   get_tree().get_root().add_child(keybindings)
+
+
+func _on_credits_button_pressed() -> void:
+  get_tree().change_scene_to_file("res://scenes/credits.tscn")
