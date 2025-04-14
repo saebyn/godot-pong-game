@@ -172,6 +172,7 @@ offset_top = 324.0
 offset_right = 576.0
 offset_bottom = 324.0
 
+[connection signal="bounce" from="GameContainer/Ball" to="GameContainer/AI" method="on_bounce"]
 [connection signal="timeout" from="GameContainer/Ball/Timer" to="GameContainer/Ball" method="on_timeout"]
 [connection signal="ai_scored" from="GameContainer/PlayerGoalpost" to="GameContainer/Scoreboard" method="on_ai_scored"]
 [connection signal="body_entered" from="GameContainer/PlayerGoalpost" to="GameContainer/PlayerGoalpost" method="_on_Area2D_body_entered"]

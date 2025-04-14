@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Ball
 
+signal bounce(position: Vector2, velocity: Vector2)
+
 const SPEED = 300.0
 const ACCELERATION = 20.0
 
@@ -41,12 +43,17 @@ func _physics_process(delta: float) -> void:
     # Normalize the velocity vector (to get direction) and multiply by the new speed
     velocity = velocity.normalized() * speed
 
+    # Emit the bounce signal
+    bounce.emit(position, velocity)
+
 
 func reset():
   # Set the initial position of the ball
   position = Vector2(get_viewport().size.x / 2, get_viewport().size.y / 2)
   # Set a random direction for the ball
   velocity = random_direction() * SPEED
+
+  bounce.emit(position, velocity)
 
   $Sprite2D.visible = true
 
