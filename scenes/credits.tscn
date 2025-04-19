@@ -29,7 +29,7 @@ theme = ExtResource("2_0ctdu")
 theme_override_font_sizes/normal_font_size = 27
 text = "saebyn's simple pong game
 - made by saebyn <me@saebyn.dev>
-- background shader from https://godotshaders.com/shader/balatro-background-shader/
+- background shader from https://godotshaders.com/shader/jazz-solo-cup/
 - some code from https://github.com/godotengine/godot-demo-projects"
 fit_content = true
 scroll_active = false
