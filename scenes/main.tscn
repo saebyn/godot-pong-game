@@ -1,13 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://dhqnm1mlu87hb"]
+[gd_scene load_steps=20 format=3 uid="uid://dhqnm1mlu87hb"]
 
 [ext_resource type="Script" uid="uid://bik7nmmbg2fwd" path="res://ball.gd" id="1_tbgi4"]
 [ext_resource type="Material" uid="uid://fymyq4epl6wb" path="res://materials/new_shader_material.tres" id="1_tefeu"]
 [ext_resource type="Script" uid="uid://dh4urbplenrq4" path="res://main_scene.gd" id="1_tipki"]
 [ext_resource type="Script" uid="uid://4n5ocoakrl56" path="res://player.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://nmssax0ehall" path="res://ai.gd" id="3_o6xl0"]
+[ext_resource type="AudioStream" uid="uid://cp8reh5m676bj" path="res://assets/audio/Pong.ogg" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://dlpi8n5yk34gb" path="res://goalpost.gd" id="4_tipki"]
 [ext_resource type="Script" uid="uid://rr1y34si0iru" path="res://scoreboard.gd" id="5_85g3d"]
 [ext_resource type="PackedScene" uid="uid://dpw1icb6rf1ir" path="res://scenes/pause_menu.tscn" id="8_85g3d"]
+[ext_resource type="AudioStream" uid="uid://ixay5mpb7sxq" path="res://assets/audio/pong_music.mp3" id="9_choun"]
+[ext_resource type="AudioStream" uid="uid://d3cgrhlabu0q0" path="res://assets/audio/Score.ogg" id="9_ya4ey"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
 size = Vector2(1152, 20)
@@ -97,6 +100,10 @@ texture = SubResource("PlaceholderTexture2D_0xm2m")
 
 [node name="Timer" type="Timer" parent="GameContainer/Ball"]
 
+[node name="BounceSound" type="AudioStreamPlayer2D" parent="GameContainer/Ball"]
+stream = ExtResource("4_85g3d")
+bus = &"Sound Effects"
+
 [node name="Player" type="CharacterBody2D" parent="GameContainer"]
 position = Vector2(80, 320)
 motion_mode = 1
@@ -164,6 +171,15 @@ text = "0"
 label_settings = SubResource("LabelSettings_lquwl")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ScoreSound" type="AudioStreamPlayer" parent="GameContainer/Scoreboard"]
+stream = ExtResource("9_ya4ey")
+bus = &"Sound Effects"
+
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="GameContainer"]
+stream = ExtResource("9_choun")
+autoplay = true
+bus = &"Music"
 
 [node name="PauseMenu" parent="." instance=ExtResource("8_85g3d")]
 visible = false

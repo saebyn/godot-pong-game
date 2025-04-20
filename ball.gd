@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Ball
 
+@onready var bounce_sound := $BounceSound
+
 signal bounce(position: Vector2, velocity: Vector2)
 
 const SPEED = 300.0
@@ -46,6 +48,8 @@ func _physics_process(delta: float) -> void:
     # Emit the bounce signal
     bounce.emit(position, velocity)
 
+    # Play the bounce sound
+    bounce_sound.play()
 
 func reset():
   # Set the initial position of the ball
