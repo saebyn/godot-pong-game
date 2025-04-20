@@ -1,199 +1,38 @@
-[gd_scene load_steps=20 format=3 uid="uid://dhqnm1mlu87hb"]
+[gd_scene load_steps=7 format=3 uid="uid://dhqnm1mlu87hb"]
 
-[ext_resource type="Script" uid="uid://bik7nmmbg2fwd" path="res://ball.gd" id="1_tbgi4"]
-[ext_resource type="Material" uid="uid://fymyq4epl6wb" path="res://materials/new_shader_material.tres" id="1_tefeu"]
-[ext_resource type="Script" uid="uid://dh4urbplenrq4" path="res://main_scene.gd" id="1_tipki"]
-[ext_resource type="Script" uid="uid://4n5ocoakrl56" path="res://player.gd" id="2_tefeu"]
-[ext_resource type="Script" uid="uid://nmssax0ehall" path="res://ai.gd" id="3_o6xl0"]
-[ext_resource type="AudioStream" uid="uid://cp8reh5m676bj" path="res://assets/audio/Pong.ogg" id="4_85g3d"]
-[ext_resource type="Script" uid="uid://dlpi8n5yk34gb" path="res://goalpost.gd" id="4_tipki"]
-[ext_resource type="Script" uid="uid://rr1y34si0iru" path="res://scoreboard.gd" id="5_85g3d"]
-[ext_resource type="PackedScene" uid="uid://dpw1icb6rf1ir" path="res://scenes/pause_menu.tscn" id="8_85g3d"]
-[ext_resource type="AudioStream" uid="uid://ixay5mpb7sxq" path="res://assets/audio/pong_music.mp3" id="9_choun"]
-[ext_resource type="AudioStream" uid="uid://d3cgrhlabu0q0" path="res://assets/audio/Score.ogg" id="9_ya4ey"]
+[ext_resource type="Script" uid="uid://dh4urbplenrq4" path="res://scenes/main.gd" id="1_tipki"]
+[ext_resource type="PackedScene" uid="uid://58qcxcen42d7" path="res://scenes/game_container.tscn" id="2_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://cjbocmk41st8n" path="res://audio/Serendipity_20Daybreak_20ext_20v2.1.2.1.mp3" id="4_tbgi4"]
+[ext_resource type="AudioStream" uid="uid://da2bw7mgebbdi" path="res://audio/filler1.mp3" id="5_tefeu"]
+[ext_resource type="PackedScene" uid="uid://dax0hhxr4xyjj" path="res://ui/menu.tscn" id="11_ya4ey"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
-size = Vector2(1152, 20)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ig7tw"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0xm2m"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h2yge"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(20, 126)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(56, 648)
-
-[sub_resource type="SystemFont" id="SystemFont_1bvp3"]
-subpixel_positioning = 0
-
-[sub_resource type="LabelSettings" id="LabelSettings_lquwl"]
-font = SubResource("SystemFont_1bvp3")
-font_size = 42
-font_color = Color(0.859212, 0.782747, 1, 1)
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_o6xl0"]
+shuffle = true
+fade_time = 1.0
+stream_count = 2
+stream_0 = ExtResource("4_tbgi4")
+stream_1 = ExtResource("5_tefeu")
 
 [node name="Main" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_tipki")
 
-[node name="GameContainer" type="Node2D" parent="."]
-process_mode = 1
-
-[node name="UI" type="Control" parent="GameContainer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="ColorRect" type="ColorRect" parent="GameContainer/UI"]
-material = ExtResource("1_tefeu")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RespawnCountdownLabel" type="Label" parent="GameContainer/UI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -78.0
-offset_top = -39.5
-offset_right = 78.0
-offset_bottom = 39.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "3..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Walls" type="StaticBody2D" parent="GameContainer"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/Walls"]
-position = Vector2(576, -10)
-shape = SubResource("RectangleShape2D_7dm0k")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameContainer/Walls"]
-position = Vector2(576, 658)
-shape = SubResource("RectangleShape2D_7dm0k")
-
-[node name="Ball" type="CharacterBody2D" parent="GameContainer" groups=["ball"]]
-position = Vector2(328, 92)
-motion_mode = 1
-script = ExtResource("1_tbgi4")
-spawn_position = Vector2(576, 324)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/Ball"]
-shape = SubResource("CircleShape2D_ig7tw")
-
-[node name="Sprite2D" type="Sprite2D" parent="GameContainer/Ball"]
+[node name="GameScene" parent="." instance=ExtResource("2_jyhfs")]
 visible = false
-position = Vector2(-8.10623e-06, 1.90735e-06)
-scale = Vector2(20, 20)
-texture = SubResource("PlaceholderTexture2D_0xm2m")
 
-[node name="Timer" type="Timer" parent="GameContainer/Ball"]
+[node name="GameMenu" parent="." instance=ExtResource("11_ya4ey")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="BounceSound" type="AudioStreamPlayer2D" parent="GameContainer/Ball"]
-stream = ExtResource("4_85g3d")
-bus = &"Effects"
-
-[node name="Player" type="CharacterBody2D" parent="GameContainer"]
-position = Vector2(80, 320)
-motion_mode = 1
-script = ExtResource("2_tefeu")
-
-[node name="Sprite2D" type="Sprite2D" parent="GameContainer/Player"]
-position = Vector2(-10, -2)
-scale = Vector2(20, 126)
-texture = SubResource("PlaceholderTexture2D_h2yge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/Player"]
-position = Vector2(-10, -2)
-shape = SubResource("RectangleShape2D_1bvp3")
-
-[node name="AI" type="CharacterBody2D" parent="GameContainer"]
-position = Vector2(1105, 320)
-motion_mode = 1
-script = ExtResource("3_o6xl0")
-
-[node name="Sprite2D" type="Sprite2D" parent="GameContainer/AI"]
-position = Vector2(-10, -2)
-scale = Vector2(20, 126)
-texture = SubResource("PlaceholderTexture2D_h2yge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/AI"]
-position = Vector2(-10, -2)
-shape = SubResource("RectangleShape2D_1bvp3")
-
-[node name="PlayerGoalpost" type="Area2D" parent="GameContainer" node_paths=PackedStringArray("ball")]
-script = ExtResource("4_tipki")
-ball = NodePath("../Ball")
-is_player = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/PlayerGoalpost"]
-position = Vector2(-28, 324)
-shape = SubResource("RectangleShape2D_lquwl")
-
-[node name="AIGoalpost" type="Area2D" parent="GameContainer" node_paths=PackedStringArray("ball")]
-position = Vector2(1208, 0)
-script = ExtResource("4_tipki")
-ball = NodePath("../Ball")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/AIGoalpost"]
-position = Vector2(-28, 324)
-shape = SubResource("RectangleShape2D_lquwl")
-
-[node name="Scoreboard" type="Node2D" parent="GameContainer"]
-position = Vector2(576, 0)
-script = ExtResource("5_85g3d")
-
-[node name="PlayerScoreLabel" type="Label" parent="GameContainer/Scoreboard"]
-offset_left = -70.0
-offset_right = -30.0
-offset_bottom = 23.0
-text = "0"
-label_settings = SubResource("LabelSettings_lquwl")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AIScoreLabel" type="Label" parent="GameContainer/Scoreboard"]
-offset_left = 30.0
-offset_right = 70.0
-offset_bottom = 23.0
-text = "0"
-label_settings = SubResource("LabelSettings_lquwl")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ScoreSound" type="AudioStreamPlayer" parent="GameContainer/Scoreboard"]
-stream = ExtResource("9_ya4ey")
-bus = &"Effects"
-
-[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="GameContainer"]
-stream = ExtResource("9_choun")
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_o6xl0")
 autoplay = true
 bus = &"Music"
 
-[node name="PauseMenu" parent="." instance=ExtResource("8_85g3d")]
-visible = false
-offset_left = 576.0
-offset_top = 324.0
-offset_right = 576.0
-offset_bottom = 324.0
-
-[connection signal="bounce" from="GameContainer/Ball" to="GameContainer/AI" method="on_bounce"]
-[connection signal="timeout" from="GameContainer/Ball/Timer" to="GameContainer/Ball" method="on_timeout"]
-[connection signal="ai_scored" from="GameContainer/PlayerGoalpost" to="GameContainer/Scoreboard" method="on_ai_scored"]
-[connection signal="body_entered" from="GameContainer/PlayerGoalpost" to="GameContainer/PlayerGoalpost" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="GameContainer/AIGoalpost" to="GameContainer/AIGoalpost" method="_on_Area2D_body_entered"]
-[connection signal="player_scored" from="GameContainer/AIGoalpost" to="GameContainer/Scoreboard" method="on_player_scored"]
-[connection signal="restart_game" from="PauseMenu" to="GameContainer/Ball" method="on_reset"]
-[connection signal="restart_game" from="PauseMenu" to="GameContainer/Scoreboard" method="reset_scores"]
+[connection signal="exit_game" from="GameMenu" to="." method="_on_game_menu_exit_game"]
+[connection signal="restart_game" from="GameMenu" to="GameScene" method="_on_restart"]
+[connection signal="return_main_menu" from="GameMenu" to="." method="_on_game_menu_return_main_menu"]
+[connection signal="start_game" from="GameMenu" to="." method="_on_game_menu_start_game"]

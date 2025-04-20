@@ -30,11 +30,7 @@ func set_bus_level(bus_name: String, level: float) -> void:
 func push_bus_level(bus_name: String) -> void:
   var bus_index: int = AudioServer.get_bus_index(bus_name)
   var level = audio_levels[bus_name.to_lower()]
-  print("Set bus level: ", bus_name, " to ", level)
-  print("Current bus level: ", AudioServer.get_bus_volume_linear(bus_index))
-  print("Current bus index: ", bus_index)
   AudioServer.set_bus_volume_linear(bus_index, level / 100.0)
-  print("New bus level: ", AudioServer.get_bus_volume_linear(bus_index))
 
 
 func load_audio_levels() -> void:

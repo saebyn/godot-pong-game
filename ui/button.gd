@@ -17,13 +17,13 @@ func _ready() -> void:
 func _on_resize() -> void:
   # Set the pivot point to the center of the button
   pivot_offset = size / 2
-  print("Pivot offset: ", pivot_offset)
 
 func _on_mouse_enter() -> void:
   if tween:
     tween.kill()
 
   tween = get_tree().create_tween()
+  tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
   tween.tween_property(self, "scale", Vector2(tween_scale, tween_scale), tween_duration)
 
 
@@ -32,4 +32,5 @@ func _on_mouse_exit() -> void:
     tween.kill()
 
   tween = get_tree().create_tween()
+  tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
   tween.tween_property(self, "scale", original_scale, tween_duration)

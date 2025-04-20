@@ -10,9 +10,6 @@ func _ready() -> void:
   var music_volume: float = MixerPersistence.audio_levels.music
   var effects_volume: float = MixerPersistence.audio_levels.effects
 
-  print("Master Volume: ", master_volume)
-  print("Music Volume: ", music_volume)
-  print("Effects Volume: ", effects_volume)
 
   # Set the sliders to the loaded values
   master_volume_slider.value = master_volume

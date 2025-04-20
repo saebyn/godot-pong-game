@@ -1,0 +1,181 @@
+[gd_scene load_steps=18 format=3 uid="uid://58qcxcen42d7"]
+
+[ext_resource type="Script" uid="uid://bqmjyo0uiyn2m" path="res://scenes/game_container.gd" id="1_af2yf"]
+[ext_resource type="Material" uid="uid://fymyq4epl6wb" path="res://materials/new_shader_material.tres" id="1_kffvu"]
+[ext_resource type="Script" uid="uid://bik7nmmbg2fwd" path="res://scripts/ball.gd" id="2_af2yf"]
+[ext_resource type="AudioStream" uid="uid://cp8reh5m676bj" path="res://audio/Pong.ogg" id="3_w821k"]
+[ext_resource type="Script" uid="uid://4n5ocoakrl56" path="res://scripts/player.gd" id="4_w0i42"]
+[ext_resource type="Script" uid="uid://nmssax0ehall" path="res://scripts/ai.gd" id="5_0brqr"]
+[ext_resource type="Script" uid="uid://dlpi8n5yk34gb" path="res://scripts/goalpost.gd" id="6_i60xf"]
+[ext_resource type="Script" uid="uid://rr1y34si0iru" path="res://scripts/scoreboard.gd" id="7_vbpxd"]
+[ext_resource type="AudioStream" uid="uid://d3cgrhlabu0q0" path="res://audio/Score.ogg" id="8_u3yvh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
+size = Vector2(1152, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ig7tw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0xm2m"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(20, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(56, 648)
+
+[sub_resource type="SystemFont" id="SystemFont_1bvp3"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_lquwl"]
+font = SubResource("SystemFont_1bvp3")
+font_size = 42
+font_color = Color(0.859212, 0.782747, 1, 1)
+
+[node name="GameContainer" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_af2yf")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+material = ExtResource("1_kffvu")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RespawnCountdownLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -39.5
+offset_right = 78.0
+offset_bottom = 39.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "3..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(576, -10)
+shape = SubResource("RectangleShape2D_7dm0k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(576, 658)
+shape = SubResource("RectangleShape2D_7dm0k")
+
+[node name="Ball" type="CharacterBody2D" parent="." groups=["ball"]]
+position = Vector2(328, 92)
+motion_mode = 1
+script = ExtResource("2_af2yf")
+spawn_position = Vector2(576, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_ig7tw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+visible = false
+position = Vector2(-8.10623e-06, 1.90735e-06)
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_0xm2m")
+
+[node name="Timer" type="Timer" parent="Ball"]
+
+[node name="BounceSound" type="AudioStreamPlayer2D" parent="Ball"]
+stream = ExtResource("3_w821k")
+bus = &"Effects"
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(80, 320)
+motion_mode = 1
+script = ExtResource("4_w0i42")
+speed = 600.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-10, -2)
+scale = Vector2(20, 126)
+texture = SubResource("PlaceholderTexture2D_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-10, -2)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="AI" type="CharacterBody2D" parent="."]
+position = Vector2(1105, 320)
+motion_mode = 1
+script = ExtResource("5_0brqr")
+
+[node name="Sprite2D" type="Sprite2D" parent="AI"]
+position = Vector2(-10, -2)
+scale = Vector2(20, 126)
+texture = SubResource("PlaceholderTexture2D_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI"]
+position = Vector2(-10, -2)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="PlayerGoalpost" type="Area2D" parent="." node_paths=PackedStringArray("ball")]
+script = ExtResource("6_i60xf")
+ball = NodePath("../Ball")
+is_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGoalpost"]
+position = Vector2(-28, 324)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="AIGoalpost" type="Area2D" parent="." node_paths=PackedStringArray("ball")]
+position = Vector2(1208, 0)
+script = ExtResource("6_i60xf")
+ball = NodePath("../Ball")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AIGoalpost"]
+position = Vector2(-28, 324)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Scoreboard" type="Node2D" parent="."]
+position = Vector2(576, 0)
+script = ExtResource("7_vbpxd")
+
+[node name="PlayerScoreLabel" type="Label" parent="Scoreboard"]
+offset_left = -70.0
+offset_right = -30.0
+offset_bottom = 23.0
+text = "0"
+label_settings = SubResource("LabelSettings_lquwl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AIScoreLabel" type="Label" parent="Scoreboard"]
+offset_left = 30.0
+offset_right = 70.0
+offset_bottom = 23.0
+text = "0"
+label_settings = SubResource("LabelSettings_lquwl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreSound" type="AudioStreamPlayer" parent="Scoreboard"]
+stream = ExtResource("8_u3yvh")
+bus = &"Effects"
+
+[connection signal="bounce" from="Ball" to="AI" method="on_bounce"]
+[connection signal="timeout" from="Ball/Timer" to="Ball" method="on_timeout"]
+[connection signal="ai_scored" from="PlayerGoalpost" to="Scoreboard" method="on_ai_scored"]
+[connection signal="body_entered" from="PlayerGoalpost" to="PlayerGoalpost" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="AIGoalpost" to="AIGoalpost" method="_on_Area2D_body_entered"]
+[connection signal="player_scored" from="AIGoalpost" to="Scoreboard" method="on_player_scored"]

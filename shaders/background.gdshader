@@ -86,51 +86,51 @@ void fragment() {
     vec3 color = vec3(1.0);
     vec3 big_c = vec3(1.0) - big_color;
     vec3 small_c = vec3(1.0) - small_color;
-    
+
     // Calculate position based on UV coordinates
     vec2 pos = UV + vec2(big_speed * TIME, 0.0);
     float id_offset = floor(big_speed * TIME / BIG_PITCH);
     float stroke = 0.0;
     vec2 last = vec2(-0.5, 0.5);
-    
+
     // Big strokes
     for (int i = 0; i < BIG_COUNT; ++i) {
         float id = float(i) + id_offset;
-        
+
         vec2 offset = vec2(id * BIG_PITCH, 0.0);
         vec2 top = offset + big_size * BIG_TOP + 0.1 - 0.2 * hash21(id);
         vec2 bottom = offset + big_size * BIG_BOTTOM + 0.1 - 0.2 * hash21(id + 0.1);
-        
+
         if (hash11(id + 0.2) < BIG_CONNECTION) {
             stroke = max(stroke, add_stroke(pos, last, top, big_size * BIG_BRUSH, 0.02, 0.6));
         }
         stroke = max(stroke, add_stroke(pos, top, bottom, big_size * BIG_BRUSH, 0.02, 0.6));
-        
+
         last = bottom;
     }
     color *= vec3(1.0) - brush(pos, stroke) * big_c;
-    
+
     // Small strokes
     pos = UV + vec2(small_speed * TIME, 0.0);
     id_offset = floor(small_speed * TIME / SMALL_PITCH);
     stroke = 0.0;
     last = vec2(-0.5, 0.5);
-    
+
     for (int i = 0; i < SMALL_COUNT; ++i) {
         float id = float(i) + id_offset;
-        
+
         vec2 offset = vec2(id * SMALL_PITCH, 0.0);
         vec2 top = offset + small_size * SMALL_TOP + 0.05 - 0.1 * hash21(id + 0.3);
         vec2 bottom = offset + small_size * SMALL_BOTTOM + 0.05 - 0.1 * hash21(id + 0.4);
-        
+
         if (hash11(id + 0.5) < SMALL_CONNECTION) {
             stroke = max(stroke, add_stroke(pos, last, top, small_size * SMALL_BRUSH, 0.01, 0.6));
         }
         stroke = max(stroke, add_stroke(pos, top, bottom, small_size * SMALL_BRUSH, 0.01, 0.6));
-        
+
         last = bottom;
     }
     color *= vec3(1.0) - brush(pos, stroke) * small_c;
-    
+
     COLOR = vec4(color, 1.0);
 }

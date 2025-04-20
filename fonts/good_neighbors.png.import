@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://bcvxkg5p5yev3"
+path="res://.godot/imported/good_neighbors.png-d4eadcc939dfcebaca901b477b84fad5.fontdata"
+
+[deps]
+
+source_file="res://fonts/good_neighbors.png"
+dest_files=["res://.godot/imported/good_neighbors.png-d4eadcc939dfcebaca901b477b84fad5.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("33-126")
+kerning_pairs=PackedStringArray()
+columns=16
+rows=6
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(4, 0, 4, 1)
+ascent=0
+descent=0
+fallbacks=[Resource("res://fonts/new_system_font.tres")]
+compress=true
+scaling_mode=2

@@ -1,8 +1,0 @@
-[gd_resource type="SystemFont" load_steps=2 format=3 uid="uid://d3mwxo3ldvrnj"]
-
-[sub_resource type="SystemFont" id="SystemFont_6b6ot"]
-font_names = PackedStringArray("Monospace")
-
-[resource]
-fallbacks = Array[Font]([SubResource("SystemFont_6b6ot")])
-font_names = PackedStringArray("FiraCode NF Retina")

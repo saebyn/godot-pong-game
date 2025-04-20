@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="saebyn's simple pong game"
+config/description="https://github.com/saebyn/godot-pong-game"
 run/main_scene="uid://cl2mo68h8geqb"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [autoload]
 
