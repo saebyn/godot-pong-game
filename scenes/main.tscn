@@ -88,6 +88,7 @@ shape = SubResource("RectangleShape2D_7dm0k")
 position = Vector2(328, 92)
 motion_mode = 1
 script = ExtResource("1_tbgi4")
+spawn_position = Vector2(576, 324)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/Ball"]
 shape = SubResource("CircleShape2D_ig7tw")
@@ -102,7 +103,7 @@ texture = SubResource("PlaceholderTexture2D_0xm2m")
 
 [node name="BounceSound" type="AudioStreamPlayer2D" parent="GameContainer/Ball"]
 stream = ExtResource("4_85g3d")
-bus = &"Sound Effects"
+bus = &"Effects"
 
 [node name="Player" type="CharacterBody2D" parent="GameContainer"]
 position = Vector2(80, 320)
@@ -174,7 +175,7 @@ vertical_alignment = 1
 
 [node name="ScoreSound" type="AudioStreamPlayer" parent="GameContainer/Scoreboard"]
 stream = ExtResource("9_ya4ey")
-bus = &"Sound Effects"
+bus = &"Effects"
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="GameContainer"]
 stream = ExtResource("9_choun")

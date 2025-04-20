@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b73ltany0lfiq"]
 
 [ext_resource type="Script" uid="uid://b5waksogab2fq" path="res://splash.gd" id="1_2ckv8"]
-[ext_resource type="Theme" uid="uid://5wwgiimot5nw" path="res://assets/new_theme.tres" id="2_0ctdu"]
+[ext_resource type="Theme" uid="uid://5wwgiimot5nw" path="res://theme/new_theme.tres" id="2_0ctdu"]
 
 [sub_resource type="Theme" id="Theme_4rrho"]
 

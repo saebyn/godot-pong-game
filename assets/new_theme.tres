@@ -1,7 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://5wwgiimot5nw"]
-
-[ext_resource type="FontFile" uid="uid://bcvxkg5p5yev3" path="res://assets/fonts/good_neighbors.png" id="1_6pma3"]
-
-[resource]
-default_font = ExtResource("1_6pma3")
-Label/fonts/font = ExtResource("1_6pma3")

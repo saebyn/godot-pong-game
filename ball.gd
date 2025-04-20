@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name Ball
 
+@export var spawn_position: Vector2
 @onready var bounce_sound := $BounceSound
 
 signal bounce(position: Vector2, velocity: Vector2)
@@ -53,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
 func reset():
   # Set the initial position of the ball
-  position = Vector2(get_viewport().size.x / 2, get_viewport().size.y / 2)
+  position = spawn_position
   # Set a random direction for the ball
   velocity = random_direction() * SPEED
 

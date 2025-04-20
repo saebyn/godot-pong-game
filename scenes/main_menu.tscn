@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dax0hhxr4xyjj"]
+[gd_scene load_steps=4 format=3 uid="uid://dax0hhxr4xyjj"]
 
 [ext_resource type="Script" uid="uid://s6rq0ofyeie5" path="res://menu.gd" id="1_l6cm7"]
-[ext_resource type="Theme" uid="uid://5wwgiimot5nw" path="res://assets/new_theme.tres" id="2_ekxnf"]
+[ext_resource type="Theme" uid="uid://5wwgiimot5nw" path="res://theme/new_theme.tres" id="2_ekxnf"]
+[ext_resource type="Script" uid="uid://d0ainskgkimnh" path="res://ui/button.gd" id="3_bqqt6"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -33,21 +34,33 @@ text = "saebyn's pong game"
 layout_mode = 2
 theme = ExtResource("2_ekxnf")
 text = "Start"
+script = ExtResource("3_bqqt6")
+tween_duration = 0.4
+tween_scale = 1.165
 
 [node name="KeybindingsButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Keybindings"
+script = ExtResource("3_bqqt6")
+
+[node name="MixerButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Audio"
+script = ExtResource("3_bqqt6")
 
 [node name="CreditsButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Credit"
+script = ExtResource("3_bqqt6")
 
 [node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_ekxnf")
 text = "Quit"
+script = ExtResource("3_bqqt6")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/KeybindingsButton" to="." method="_on_keybindings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MixerButton" to="." method="_on_mixer_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

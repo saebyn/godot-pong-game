@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://5wwgiimot5nw"]
+
+[ext_resource type="FontFile" uid="uid://bcvxkg5p5yev3" path="res://assets/fonts/good_neighbors.png" id="1_l8uce"]
+[ext_resource type="StyleBox" uid="uid://dqkqhqtsiax0b" path="res://theme/panel_style_box_flat.tres" id="2_2wqca"]
+
+[resource]
+default_font = ExtResource("1_l8uce")
+Label/fonts/font = ExtResource("1_l8uce")
+Panel/styles/panel = ExtResource("2_2wqca")
+PanelContainer/styles/panel = ExtResource("2_2wqca")

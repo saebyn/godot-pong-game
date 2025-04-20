@@ -3,7 +3,7 @@ extends Control
 signal restart_game
 
 @onready var keybindings_scene: PackedScene = preload("res://ui/keybindings/keybindings.tscn")
-
+@onready var mixer_scene: PackedScene = preload("res://ui/mixer/mixer.tscn")
 
 func _on_return_main_menu_button_pressed() -> void:
   # Unpause the game
@@ -37,3 +37,8 @@ func _on_keybindings_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
   get_tree().change_scene_to_file("res://scenes/credits.tscn")
+
+
+func _on_mixer_button_pressed() -> void:
+  var mixer = mixer_scene.instantiate()
+  get_tree().get_root().add_child(mixer)

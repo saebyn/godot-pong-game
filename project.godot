@@ -18,6 +18,12 @@ config/icon="res://icon.svg"
 [autoload]
 
 KeyPersistence="*res://ui/keybindings/KeyPersistence.gd"
+MixerPersistence="*res://ui/mixer/MixerPersistence.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [global_group]
 
