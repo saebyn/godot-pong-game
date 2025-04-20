@@ -2,7 +2,7 @@ extends Control
 
 signal restart_game
 
-@onready var keybindings_scene: PackedScene = preload("res://keybindings/keybindings.tscn")
+@onready var keybindings_scene: PackedScene = preload("res://ui/keybindings/keybindings.tscn")
 
 
 func _on_return_main_menu_button_pressed() -> void:
