@@ -21,8 +21,9 @@ func _on_resize() -> void:
 func _on_mouse_enter() -> void:
   if tween:
     tween.kill()
+    tween = null
 
-  tween = get_tree().create_tween()
+  tween = create_tween()
   tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
   tween.tween_property(self, "scale", Vector2(tween_scale, tween_scale), tween_duration)
 
@@ -30,7 +31,8 @@ func _on_mouse_enter() -> void:
 func _on_mouse_exit() -> void:
   if tween:
     tween.kill()
+    tween = null
 
-  tween = get_tree().create_tween()
+  tween = create_tween()
   tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
   tween.tween_property(self, "scale", original_scale, tween_duration)

@@ -4,7 +4,7 @@ extends Area2D
 signal player_scored
 signal ai_scored
 
-@export var ball: Ball
+@export var ball: Node
 @export var is_player: bool = false
 
 func _on_Area2D_body_entered(body: Node) -> void:
