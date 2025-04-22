@@ -5,4 +5,4 @@ font_names = PackedStringArray("Monospace")
 
 [resource]
 fallbacks = Array[Font]([SubResource("SystemFont_6b6ot")])
-font_names = PackedStringArray("FiraCode NF Retina")
+font_names = PackedStringArray("Courier New")
