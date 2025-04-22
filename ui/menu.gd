@@ -13,7 +13,6 @@ signal exit_game
 @onready var keybindings_scene: PackedScene = preload("keybindings/keybindings.tscn")
 @onready var mixer_scene: PackedScene = preload("mixer/mixer.tscn")
 @onready var credits_scene: PackedScene = preload("credits.tscn")
-@onready var menu_scene: PackedScene = preload("menu.tscn")
 
 func _ready() -> void:
   # Make control node occupy the whole screen
