@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://5wwgiimot5nw"]
 
-[ext_resource type="FontFile" uid="uid://bcvxkg5p5yev3" path="res://fonts/good_neighbors.png.fontdata" id="1_l8uce"]
+[ext_resource type="FontFile" path="res://fonts/good_neighbors.png.fontdata" id="1_l8uce"]
 [ext_resource type="StyleBox" uid="uid://dqkqhqtsiax0b" path="res://theme/panel_style_box_flat.tres" id="2_2wqca"]
 
 [resource]
