@@ -1,10 +1,10 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://5wwgiimot5nw"]
 
-[ext_resource type="FontFile" path="res://fonts/good_neighbors.png.fontdata" id="1_l8uce"]
 [ext_resource type="StyleBox" uid="uid://dqkqhqtsiax0b" path="res://theme/panel_style_box_flat.tres" id="2_2wqca"]
+[ext_resource type="FontFile" uid="uid://cit42vuc43686" path="res://fonts/generale-station/GeneraleStation-Regular.otf" id="2_l8uce"]
 
 [resource]
-default_font = ExtResource("1_l8uce")
-Label/fonts/font = ExtResource("1_l8uce")
+default_font = ExtResource("2_l8uce")
+Label/constants/outline_size = 3
 Panel/styles/panel = ExtResource("2_2wqca")
 PanelContainer/styles/panel = ExtResource("2_2wqca")

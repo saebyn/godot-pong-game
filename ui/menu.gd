@@ -1,6 +1,8 @@
 extends Control
 
 
+@export var window_size: Vector2 = Vector2(1152, 648)
+
 @onready var start_screen: Control = $StartScreen
 @onready var pause_screen: Control = $PauseScreen
 @onready var background: ColorRect = $Background
@@ -16,7 +18,7 @@ signal exit_game
 
 func _ready() -> void:
   # Make control node occupy the whole screen
-  size = get_viewport().size
+  size = window_size
   position = Vector2.ZERO
   get_tree().paused = true
 

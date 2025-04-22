@@ -35,7 +35,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="CenterContainer"]
 layout_mode = 2
 theme = ExtResource("2_10vqf")
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 60
 text = "saebyn's simple pong game"
 
 [node name="Timer" type="Timer" parent="."]

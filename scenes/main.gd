@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var game_menu := $GameMenu
 @onready var game_scene := $GameScene
+@onready var music_player := $MusicAudioStreamPlayer
 
 
 func _input(event: InputEvent) -> void:
@@ -47,3 +48,6 @@ func _on_game_menu_start_game() -> void:
   
   # Start the game scene
   game_scene.show()
+
+  # start the music
+  music_player.play()

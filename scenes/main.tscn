@@ -19,17 +19,12 @@ script = ExtResource("1_tipki")
 
 [node name="GameScene" parent="." instance=ExtResource("2_jyhfs")]
 visible = false
+script = null
 
 [node name="GameMenu" parent="." instance=ExtResource("11_ya4ey")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_o6xl0")
-autoplay = true
 bus = &"Music"
 
 [connection signal="exit_game" from="GameMenu" to="." method="_on_game_menu_exit_game"]
